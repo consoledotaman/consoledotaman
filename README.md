@@ -1,16 +1,47 @@
-## Hi there 👋
+# Hi, I'm Aman 👋
 
-<!--
-**consoledotaman/consoledotaman** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I'm a **Full-Stack Web Developer** who enjoys building clean, scalable, and user-focused web applications.  
+I like working close to the frontend, designing smooth UIs, and backing them with solid backend logic.
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 🚀 What I'm Working On
+
+- Building full-stack apps using **React, Node.js, and MongoDB**
+- I'm currently learning **Next.js**
+- Exploring **Ai/ML**
+- Preparing for **GSoC** and contributing to open-source projects
+
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React
+- Vite
+- Tailwind CSS
+- HTML5, CSS3, JavaScript (ES6+)
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+
+### Tools & Platforms
+- Git & GitHub
+- Firebase
+- Auth0
+- Figma (learning)
+
+---
+
+
+## 📫 Connect With Me
+
+- LinkedIn: https://linkedin.com/in/https://www.linkedin.com/in/aman-raj-xd/
+- Portfolio: https://amannraj.vercel.app
+
+---
+
+⭐ Always open to learning, collaborating, and building meaningful products.
