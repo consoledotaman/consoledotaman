@@ -19,6 +19,7 @@ I like working close to the frontend, designing smooth UIs, and backing them wit
 
 ### Frontend
 - React
+- Next.js
 - Vite
 - Tailwind CSS
 - HTML5, CSS3, JavaScript (ES6+)
@@ -27,6 +28,7 @@ I like working close to the frontend, designing smooth UIs, and backing them wit
 - Node.js
 - Express.js
 - MongoDB
+- PostgresSQL
 
 ### Tools & Platforms
 - Git & GitHub
