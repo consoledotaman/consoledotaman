@@ -13,47 +13,106 @@ Source data: every paid Stripe invoice has three fields we care about:
 
 For any paid invoice:
 
-```
-total_days  = days between period_start and period_end
+```txt
+total_days  = days between subscription_startDate and subscription_endDate
 daily_rate  = amount_paid / total_days
 
-For each calendar month M that the period [period_start, period_end) touches:
-    overlap_days   = number of days in M that fall inside [period_start, period_end)
-    recognized_M   = overlap_days × daily_rate
+For each calendar month M that the period 
+[subscription_startDate, subscription_endDate) touches:
+
+    overlap_start = max(subscription_startDate, first_day_of(M))
+    overlap_end   = min(subscription_endDate, first_day_of(M + 1))
+
+    overlap_days  = number of days in 
+                    [overlap_start, overlap_end)
+
+    recognized_M  = overlap_days × daily_rate
 
     Write one revenue_recognition row:
-        invoice_id, therapist_id, year, month, amount=recognized_M
+        invoice_id,
+        therapist_id,
+        year,
+        month,
+        amount = recognized_M
 ```
 
-The sum of all `recognized_M` values must equal `amount_paid` (within sub-cent rounding).
+The sum of all `recognized_M` values must equal `amount_paid`
+(with any sub-cent rounding residual added to the final month).
 
-### Explicit formula
+### Explicit Formula
 
-Given invoice with amount `P`, service window `[S, E)` (S inclusive, E exclusive):
+Given invoice with amount `P`, service window:
 
-```
-T              = E − S                           (total days in billing window)
-daily_rate     = P / T
-
-For each calendar month M:
-  overlap_start  = max(S, first_day_of(M))
-  overlap_end    = min(E, first_day_of(M + 1))   (exclusive bound)
-  overlap_days   = max(0, overlap_end − overlap_start)
-  recognized_M   = overlap_days × daily_rate
-
-Constraint: Σ recognized_M over all M = P
-  (enforced by adding any sub-cent rounding residual to the last month's row)
+```txt
+[subscription_startDate, subscription_endDate)
 ```
 
-Example — March 15 → April 15, $100:
-```
-T            = 31
-daily_rate   = 100 / 31 = 3.2258
+```txt
+T = subscription_endDate − subscription_startDate
 
-March:  overlap_start = Mar 15, overlap_end = Apr 1  → 17 days → 17 × 3.2258 = $54.84
-April:  overlap_start = Apr 1,  overlap_end = Apr 15 → 14 days → 14 × 3.2258 = $45.16
-Sum = $100.00 ✓
+daily_rate = P / T
 ```
+
+For each calendar month `M`:
+
+```txt
+overlap_start = max(subscription_startDate, first_day_of(M))
+
+overlap_end   = min(
+                    subscription_endDate,
+                    first_day_of(M + 1)
+                )
+
+overlap_days  = max(0, overlap_end − overlap_start)
+
+recognized_M  = overlap_days × daily_rate
+```
+
+Constraint:
+
+```txt
+Σ recognized_M over all months = P
+```
+
+(enforced by adding any sub-cent rounding residual to the last month's row)
+
+### Example
+
+Subscription window:
+
+```txt
+subscription_startDate = March 15
+subscription_endDate   = April 15
+amount_paid            = $100
+```
+
+```txt
+T = 31
+daily_rate = 100 / 31 = 3.2258
+```
+
+March:
+
+```txt
+overlap_start = Mar 15
+overlap_end   = Apr 1
+
+17 days × 3.2258 = $54.84
+```
+
+April:
+
+```txt
+overlap_start = Apr 1
+overlap_end   = Apr 15
+
+14 days × 3.2258 = $45.16
+```
+
+```txt
+Total = $100.00 ✓
+```
+
 
 ## Storage
 
