@@ -64,7 +64,7 @@ Focus Areas   : Next.js, Distributed Web Systems, Open-Source Contributions / GS
 <div align="center">
 
 <a href="https://github.com/consoledotaman">
-  <img height="250" src="https://github-readme-stats-sigma-five.vercel.app/api?username=consoledotaman&show_icons=true&theme=dark" alt="Aman's GitHub Stats" />
+  <img height="300" src="https://github-readme-stats-sigma-five.vercel.app/api?username=consoledotaman&include_all_commits=true&show_icons=true&theme=dark" alt="Aman's GitHub Stats" />
 </a>
 
 </div>
